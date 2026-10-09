@@ -1,0 +1,10 @@
+.status-link {
+  color: #B8282B;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.status-link:hover {
+  color: #8c1e20;
+}

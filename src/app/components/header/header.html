@@ -1,0 +1,18 @@
+<header class="top-header">
+  <div class="header-container">
+    <a class="logo" routerLink="/" aria-label="El Diario Digital, inicio"><span class="logo-icon">D</span><span class="logo-text">El Diario Digital</span></a>
+    <div class="header-right">
+      <time class="current-date" [attr.datetime]="now().toISOString()">{{now() | date:'EEEE, d MMM y • HH:mm:ss':'':'es'}}</time>
+      <a class="profile-link" routerLink="/cuenta" aria-label="Mi perfil" title="Mi perfil">
+        @if(usuario();as user){<img class="user-avatar" [src]="avatarUrl()" [alt]="'Perfil de '+user.nombre">}
+        @else{<svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>}
+      </a>
+      <a class="btn btn-primary btn-sm" routerLink="/cuenta">Suscribirse</a>
+    </div>
+  </div>
+  <nav class="nav-bar" aria-label="Navegación por secciones"><div class="nav-container"><div class="category-filters">
+    @for(category of categories;track category.value){<button type="button" class="chip" [class.active]="selectedCategory()===category.value" [attr.aria-pressed]="selectedCategory()===category.value" (click)="chooseCategory(category.value)">{{category.label}}</button>}
+  </div><div class="search-wrap"><label class="visually-hidden" for="searchInput">Buscar noticias o temas</label><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input id="searchInput" type="search" [ngModel]="query" (ngModelChange)="searchChanged($event)" placeholder="Buscar noticias o temas..." autocomplete="off"></div>
+    @if(matches.length){<div class="search-results" role="listbox">@for(item of matches;track item.id){<button type="button" role="option" (click)="go(item.id)"><strong>{{item.title}}</strong><small>{{item.category}}</small></button>}</div>}
+  </div></div></nav>
+</header>

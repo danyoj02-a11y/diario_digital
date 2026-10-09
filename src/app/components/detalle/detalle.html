@@ -1,0 +1,26 @@
+<main class="main-content">
+    <article class="container article-detail">@if(noticia();as n){<header class="article-header"><span
+                class="badge-sub text-red">{{n.category}}</span>
+            <h1 class="article-title">{{n.title}}</h1>
+            <div class="author-box"><img [src]="n.authorAvatar" [alt]="n.author" class="author-img">
+                <div class="author-info"><strong>Por {{n.author}}</strong><span>{{n.authorRole}} • {{n.publishedAt |
+                        date:'d MMM y'}}</span></div>
+            </div>
+        </header>
+        <div class="article-body-grid">
+            <div class="article-media"><img [src]="n.detailImage || n.image" [alt]="n.title"><span
+                    class="media-caption">{{n.caption}}</span></div>
+            <div class="article-text">
+                <p class="paragraph-lead">{{n.excerpt}}</p>@for(paragraph of n.content.split('\n\n');track $index){<p>
+                    {{paragraph}}</p>}@if(n.quote){<blockquote class="article-quote">“{{n.quote}}”</blockquote>}<div
+                    class="article-actions"><button id="btnFav" type="button" class="btn btn-outline-fav"
+                        [class.is-favorite]="favorite()" [attr.aria-pressed]="favorite()" (click)="toggle()">♡
+                        {{favorite()?'Guardado en favoritos':'Favoritos'}}</button><a routerLink="/contacto"
+                        class="btn btn-cta-orange">Contactar</a></div>
+                <p class="form-status" role="status" aria-live="polite">@if(favoriteMessage()){ {{favoriteMessage()}} <a
+                        routerLink="/cuenta">Iniciar sesión</a> }</p>
+            </div>
+        </div>}@else{<p class="article-not-found">No encontramos esta noticia. <a routerLink="/listado">Volver al
+                catálogo</a></p>}
+    </article>
+</main>

@@ -1,0 +1,17 @@
+<main class="main-content">
+    <div class="container">
+        <div class="section-header">
+            <h1>Catálogo de Noticias</h1>
+        </div>
+        <div class="cards-grid">@for(n of filtradas();track n.id){<article class="news-card">
+                <div class="card-img"><img [src]="n.image" [alt]="n.title"></div>
+                <div class="card-body">
+                    <div class="card-meta"><span class="badge badge-red">{{n.category}}</span><span>{{n.publishedAt |
+                            date:'d MMM y'}}</span></div>
+                    <h2 class="card-title">{{n.title}}</h2>
+                    <p class="card-excerpt">{{n.excerpt}}</p><a [routerLink]="['/detalle',n.id]" class="card-link">Ver
+                        más →</a>
+                </div>
+            </article>}@empty{<p>No hay noticias para estos filtros.</p>}</div>
+    </div>
+</main>

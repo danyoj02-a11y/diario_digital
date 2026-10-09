@@ -1,0 +1,45 @@
+<main class="main-content account-page">
+    <div class="container">
+        <section class="account-content" aria-labelledby="accountHeading">
+            <p class="badge badge-red">EL DIARIO DIGITAL</p>
+            <h1 id="accountHeading">Tu cuenta</h1>@if(activeUser();as user){<p class="form-subtext">Tu sesión está
+                activa.</p>
+            <section class="signed-in-panel">
+                <h2>Sesión iniciada</h2>
+                <p>{{user.name}}</p>
+                <p>{{user.email}}</p>
+                <div class="account-actions"><a class="btn btn-primary" routerLink="/panel">Ir a mis favoritos y
+                        noticias</a><button class="btn btn-outline-fav" type="button" (click)="logout()">Cerrar
+                        sesión</button></div>
+            </section>}@else{<p class="form-subtext">Suscríbete para guardar tus noticias favoritas y publicar
+                artículos.</p>
+            <div class="account-tabs" role="tablist" aria-label="Acceso a la cuenta"><button class="account-tab"
+                    [class.active]="mode()==='register'" type="button" role="tab"
+                    [attr.aria-selected]="mode()==='register'"
+                    (click)="selectMode('register')">Suscribirme</button><button class="account-tab"
+                    [class.active]="mode()==='login'" type="button" role="tab" [attr.aria-selected]="mode()==='login'"
+                    (click)="selectMode('login')">Iniciar sesión</button></div>@if(mode()==='register'){<form
+                class="form-layout" (ngSubmit)="register()">
+                <div class="form-group"><label for="registerName">Nombres y apellidos <span
+                            class="required">*</span></label><input id="registerName" name="registerName"
+                        [(ngModel)]="registerName" autocomplete="name" required minlength="3"></div>
+                <div class="form-group"><label for="registerEmail">Correo electrónico <span
+                            class="required">*</span></label><input id="registerEmail" name="registerEmail"
+                        [(ngModel)]="registerEmail" type="email" autocomplete="email" required></div>
+                <div class="form-group"><label for="registerPassword">Contraseña <span
+                            class="required">*</span></label><input id="registerPassword" name="registerPassword"
+                        [(ngModel)]="registerPassword" type="password" autocomplete="new-password" required
+                        minlength="8"><small class="help-text">Usa al menos 8 caracteres.</small></div><button
+                    class="btn btn-primary btn-block" type="submit">Crear cuenta</button>
+            </form>}@else{<form class="form-layout" (ngSubmit)="login()">
+                <div class="form-group"><label for="loginEmail">Correo electrónico <span
+                            class="required">*</span></label><input id="loginEmail" name="loginEmail"
+                        [(ngModel)]="loginEmail" type="email" autocomplete="email" required></div>
+                <div class="form-group"><label for="loginPassword">Contraseña <span
+                            class="required">*</span></label><input id="loginPassword" name="loginPassword"
+                        [(ngModel)]="loginPassword" type="password" autocomplete="current-password" required></div>
+                <button class="btn btn-primary btn-block" type="submit">Iniciar sesión</button>
+            </form>}}<p class="form-status" role="status" aria-live="polite">{{notice()}}</p>
+        </section>
+    </div>
+</main>

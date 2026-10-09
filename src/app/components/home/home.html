@@ -1,0 +1,49 @@
+<main>
+    <div class="main-content">
+        <div class="container">
+            @if(principal;as n){<section class="hero-news">
+                <div><span class="badge badge-red">{{n.category}}</span><span class="time-ago"> • Última hora</span>
+                    <h1 class="hero-title">{{n.title}}</h1>
+                    <p class="hero-excerpt">{{n.excerpt}}</p><a [routerLink]="['/detalle',n.id]"
+                        class="btn btn-primary">Leer más →</a>
+                </div>
+                <div class="hero-image"><img [src]="n.image" [alt]="n.title"><span
+                        class="image-caption">{{n.caption}}</span></div>
+            </section>}
+            <section class="featured-section">
+                <div class="section-header">
+                    <h2>Noticias Destacadas</h2><a routerLink="/listado" class="link-more">Ver toda la actualidad →</a>
+                </div>
+                <div class="cards-grid">@for(n of destacadas;track n.id){<article class="news-card">
+                        <div class="card-img"><img [src]="n.image" [alt]="n.title"></div>
+                        <div class="card-body">
+                            <div class="card-meta"><span
+                                    class="badge badge-red">{{n.category}}</span><span>{{n.publishedAt | date:'d
+                                    MMM'}}</span></div>
+                            <h3 class="card-title">{{n.title}}</h3>
+                            <p class="card-excerpt">{{n.excerpt}}</p><a [routerLink]="['/detalle',n.id]"
+                                class="card-link">Ver más →</a>
+                        </div>
+                    </article>}</div>
+            </section>
+        </div>
+    </div>
+</main>
+<section class="newsletter-banner newsletter-cta" aria-labelledby="newsletterHeading">
+    <div class="container newsletter-grid newsletter-content">
+        <div class="newsletter-info newsletter-copy">
+            <h2 id="newsletterHeading">La verdad no espera. Recibe nuestro resumen semanal.</h2>
+            <p>Únete a más de 50,000 profesionales que reciben todos los viernes por la mañana un análisis exclusivo de
+                los eventos en el país.</p>
+        </div>
+        <form id="newsletterForm" (ngSubmit)="subscribeNewsletter($event)" class="newsletter-form">
+            <div class="input-group newsletter-input-row"><input type="email" [(ngModel)]="newsletterEmail"
+                    name="newsletterEmail" placeholder="Tu correo electrónico..." autocomplete="email" required><button
+                    type="submit" class="btn btn-red btn-primary">Registrarme</button></div>
+            <p class="newsletter-disclaimer newsletter-legal">Al suscribirte confirmas que aceptas nuestra Política de
+                Privacidad y el tratamiento de datos para el envío exclusivo de newsletters. Puedes darte de baja cuando
+                quieras.</p>@if(newsletterStatus){<p class="form-status newsletter-status" role="status"
+                aria-live="polite">{{newsletterStatus}}</p>}
+        </form>
+    </div>
+</section>

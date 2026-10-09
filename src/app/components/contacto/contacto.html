@@ -1,0 +1,65 @@
+<main class="main-content">
+    <div class="container contact-grid">
+        <section class="contact-info">
+            <span class="badge-sub">ATENCIÓN AL LECTOR</span>
+            <h1 class="page-title">Estamos aquí para escucharte</h1>
+            <p class="section-desc">Utiliza este formulario para enviarnos sugerencias, correcciones de estilo, cartas
+                al director o consultas comerciales. Nuestro equipo de redacción revisa cada mensaje.</p>
+            <div class="contact-channels">
+                <h2>Redacciones y Soporte</h2>
+                <div class="channel-item">
+                    <span class="channel-tag">CARTAS AL DIRECTOR</span>
+                    <a href="mailto:cartas@eldiario.com" class="channel-email">cartas@eldiario.com</a>
+                    <p class="channel-phone">+34 910 123 456</p>
+                </div>
+                <div class="channel-item">
+                    <span class="channel-tag">SUSCRIPCIONES Y SOPORTE TÉCNICO</span>
+                    <a href="mailto:soporte@eldiario.com" class="channel-email">soporte@eldiario.com</a>
+                    <p class="channel-phone">900 123 456 (Línea Gratuita)</p>
+                </div>
+                <div class="channel-item">
+                    <span class="channel-tag">PUBLICIDAD Y PATROCINIOS</span>
+                    <a href="mailto:publicidad@eldiario.com" class="channel-email">publicidad@eldiario.com</a>
+                    <p class="channel-phone">+34 910 123 457</p>
+                </div>
+            </div>
+        </section>
+        <section class="contact-form-card">
+            <h2>Contáctanos</h2>
+            <p class="form-subtext">Por favor, rellene todos los campos requeridos para poder procesar su consulta
+                debidamente.</p>
+            <form [formGroup]="form" (submit)="submit($event)">
+                <div class="form-group">
+                    <label for="fullName">Nombre completo <span class="required">*</span></label>
+                    <input id="fullName" formControlName="fullName" autocomplete="name"
+                        placeholder="Ej. Mateo Silva" required minlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico <span class="required">*</span></label>
+                    <input id="email" type="email" formControlName="email" autocomplete="email"
+                        placeholder="mateo.silva@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Asunto <span class="required">*</span></label>
+                    <select id="subject" formControlName="subject" required>
+                        <option value="">Seleccione el motivo de su mensaje</option>
+                        <option value="cartas">Carta al director</option>
+                        <option value="soporte">Soporte técnico / Suscripción</option>
+                        <option value="publicidad">Publicidad y Patrocinios</option>
+                        <option value="otro">Otro motivo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje <span class="required">*</span></label>
+                    <textarea id="message" rows="5" formControlName="message"
+                        placeholder="Escriba los detalles de su consulta aquí..." required minlength="10"></textarea>
+                </div>
+                <p class="disclaimer-text">Al enviar este formulario, usted confirma que acepta nuestra política de
+                    privacidad y autoriza el procesamiento de sus datos personales únicamente con el propósito de
+                    resolver su consulta.</p>
+                <button type="submit" class="btn btn-submit btn-block">Enviar mensaje</button>
+                <p class="form-status" role="status" aria-live="polite">{{sent()}}</p>
+            </form>
+        </section>
+    </div>
+</main>

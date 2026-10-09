@@ -1,0 +1,33 @@
+<footer class="main-footer">
+  <div class="container footer-content">
+    <div class="footer-brand"><a routerLink="/" class="logo text-white"><span class="logo-icon">D</span><span
+          class="logo-text">El Diario Digital</span></a>
+      <p>Periodismo independiente, riguroso y transparente al servicio de los ciudadanos.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>SECCIONES</h4>
+        <ul>
+          <li><a routerLink="/">Inicio</a></li>
+          <li><a routerLink="/listado" [queryParams]="{categoria:'tecnologia'}">Tecnología</a></li>
+          <li><a routerLink="/listado" [queryParams]="{categoria:'economia'}">Economía</a></li>
+          <li><a routerLink="/listado" [queryParams]="{categoria:'turismo'}">Turismo</a></li>
+          <li><a routerLink="/listado" [queryParams]="{categoria:'cultura'}">Cultura</a></li>
+          <li><a routerLink="/listado" [queryParams]="{categoria:'educacion'}">Educación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>NOSOTROS</h4>
+        <ul>
+          <li><a routerLink="/contacto">Contacto</a></li>
+          <li><a routerLink="/panel">Gestión de Noticias / Panel</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 El Diario Digital. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
